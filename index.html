@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tomo -- gentle wellness</title>
+    <meta name="description" content="tomo is your quiet companion for mood tracking, journaling, and daily wellness. no accounts. no cloud. just you and tomo.">
+    <meta name="theme-color" content="#F2E6D0">
+    <link rel="icon" type="image/png" href="icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="tomo -- gentle wellness">
+    <meta property="og:description" content="a quiet companion for your everyday wellness.">
+    <meta property="og:image" content="icon.png">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cream: #FBF7F0;
+            --honey: #F2E6D0;
+            --honey-warm: #F5E0C4;
+            --deep-espresso: #2C1810;
+            --oak-brown: #5C4033;
+            --warm-stone: #8B7D6B;
+            --wheat-grey: #A89B8C;
+            --mocha: #9E8E7A;
+            --parchment: #EDE4D4;
+            --terracotta: #C4725A;
+            --sage: #7A9E7E;
+            --lavender: #9B8EC4;
+            --soft-gold: #D4A854;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            color: var(--deep-espresso);
+            background: var(--cream);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Hero ───────────────────────────────────────────── */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(180deg, var(--honey) 0%, var(--cream) 60%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 50% 30%, rgba(245, 224, 196, 0.6) 0%, transparent 70%);
+            animation: breathe 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes breathe {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 32px;
+            margin-bottom: 2rem;
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 20px 60px rgba(44, 24, 16, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 400;
+            color: var(--deep-espresso);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            color: var(--warm-stone);
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: var(--deep-espresso);
+            color: var(--cream);
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 30px rgba(44, 24, 16, 0.15);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(44, 24, 16, 0.2);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            color: var(--wheat-grey);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ── Section shared ─────────────────────────────────── */
+
+        section {
+            padding: 6rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: lowercase;
+            color: var(--wheat-grey);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            color: var(--deep-espresso);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .section-body {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--oak-brown);
+            font-weight: 300;
+        }
+
+        .section-body strong {
+            font-weight: 500;
+            color: var(--deep-espresso);
+        }
+
+        /* ── What makes tomo different ──────────────────────── */
+
+        .different {
+            background: linear-gradient(180deg, var(--cream) 0%, var(--parchment) 50%, var(--cream) 100%);
+            padding: 6rem 2rem;
+        }
+
+        .different-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pillars {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .pillars { grid-template-columns: 1fr 1fr; }
+        }
+
+        .pillar {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(237, 228, 212, 0.8);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .pillar:hover {
+            transform: translateY(-3px);
+        }
+
+        .pillar-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .pillar h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+            color: var(--deep-espresso);
+            margin-bottom: 0.5rem;
+        }
+
+        .pillar p {
+            font-size: 0.95rem;
+            color: var(--warm-stone);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* ── Features ───────────────────────────────────────── */
+
+        .features-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .features-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--parchment);
+            font-size: 1rem;
+            color: var(--oak-brown);
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--terracotta);
+            flex-shrink: 0;
+        }
+
+        /* ── Privacy banner ─────────────────────────────────── */
+
+        .privacy-banner {
+            background: var(--deep-espresso);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .privacy-banner .section-label {
+            color: var(--mocha);
+        }
+
+        .privacy-banner .section-title {
+            color: var(--cream);
+        }
+
+        .privacy-banner .section-body {
+            color: var(--wheat-grey);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ── Footer ─────────────────────────────────────────── */
+
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--cream);
+            border-top: 1px solid var(--parchment);
+        }
+
+        footer .footer-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: var(--wheat-grey);
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--warm-stone);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--terracotta);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* ── Fade-in on scroll ──────────────────────────────── */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+        /* ── Navbar ─────────────────────────────────────────── */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 2rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(251, 247, 240, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(237, 228, 212, 0.5);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 2px 20px rgba(44, 24, 16, 0.06);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--deep-espresso);
+        }
+
+        .navbar-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+
+        .navbar-brand span {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .navbar-links a {
+            font-size: 0.85rem;
+            color: var(--warm-stone);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 400;
+        }
+
+        .navbar-links a:hover {
+            color: var(--deep-espresso);
+        }
+
+        .navbar-cta {
+            padding: 0.5rem 1.2rem;
+            background: var(--deep-espresso);
+            color: var(--cream) !important;
+            border-radius: 60px;
+            font-family: 'DM Serif Display', serif;
+            font-size: 0.85rem !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(44, 24, 16, 0.15);
+        }
+
+        @media (max-width: 500px) {
+            .navbar-links a:not(.navbar-cta) { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Navbar ─────────────────────────────────────────────── -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="icon.png" alt="tomo">
+            <span>tomo</span>
+        </a>
+        <div class="navbar-links">
+            <a href="privacy.html">privacy</a>
+            <a href="terms.html">terms</a>
+            <a href="https://play.google.com/store/apps/details?id=com.bonasystems.tomo" class="navbar-cta">get tomo</a>
+        </div>
+    </nav>
+
+    <!-- ── Hero ──────────────────────────────────────────────── -->
+    <div class="hero">
+        <img src="icon.png" alt="tomo" class="hero-icon">
+        <h1>tomo</h1>
+        <p class="tagline">a quiet companion for your everyday wellness.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.bonasystems.tomo" class="cta-button">
+            get tomo on google play
+        </a>
+        <div class="scroll-hint">scroll down</div>
+    </div>
+
+    <!-- ── What is tomo ──────────────────────────────────────── -->
+    <section class="reveal">
+        <p class="section-label">what is tomo</p>
+        <h2 class="section-title">not a coach. not a therapist.<br>just a friend who pays attention.</h2>
+        <p class="section-body">
+            tomo is a warm space where you can check in with yourself, track how you feel, and start noticing the patterns that shape your days.
+            <br><br>
+            every day, tomo asks one simple question: <strong>how are you doing?</strong>
+            <br><br>
+            log your mood and energy in seconds. build small habits. write in your journal. over time, tomo starts connecting the dots -- noticing that your mood dips on certain days, that exercise changes how you feel, that your energy follows patterns you never saw before.
+        </p>
+    </section>
+
+    <!-- ── What makes tomo different ─────────────────────────── -->
+    <div class="different">
+        <div class="different-inner reveal">
+            <p class="section-label">what makes tomo different</p>
+            <h2 class="section-title">most wellness apps feel clinical.<br>tomo feels like a friend.</h2>
+            <div class="pillars">
+                <div class="pillar">
+                    <div class="pillar-emoji">&#127793;</div>
+                    <h3>he's alive</h3>
+                    <p>tomo blinks, wiggles, watches clouds with you. he's not a logo -- he's a companion who's always there.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-emoji">&#127769;</div>
+                    <h3>he knows what time it is</h3>
+                    <p>the app changes with the hour. morning greetings, evening check-ins, late-night gentleness. it meets you where you are.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-emoji">&#128156;</div>
+                    <h3>he never guilts you</h3>
+                    <p>no streak anxiety. no red notifications. no "you missed a day!" on tough days, tomo softens. on good days, he celebrates quietly.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-emoji">&#9968;&#65039;</div>
+                    <h3>you can just hang out</h3>
+                    <p>watch clouds. skip stones. rake a sand garden. stargaze. make tea. no points, no score -- just quiet company.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Features ──────────────────────────────────────────── -->
+    <section class="reveal">
+        <p class="section-label">everything inside</p>
+        <h2 class="section-title">the gentle stuff.</h2>
+        <ul class="features-list">
+            <li><span class="feature-dot"></span>mood and energy tracking with multiple check-ins per day</li>
+            <li><span class="feature-dot"></span>habit tracking with gentle completion</li>
+            <li><span class="feature-dot"></span>private journal with voice input and writing prompts</li>
+            <li><span class="feature-dot"></span>breathing exercises, grounding techniques, and a calm space</li>
+            <li><span class="feature-dot"></span>"with tomo" -- chill activities to do together</li>
+            <li><span class="feature-dot"></span>"what helped before" -- surfaces what worked on past tough days</li>
+            <li><span class="feature-dot"></span>"letters to future you" -- write on good days, read on hard ones</li>
+            <li><span class="feature-dot"></span>weekly reflections and body check-ins</li>
+            <li><span class="feature-dot"></span>worry dump -- get anxious thoughts out of your head</li>
+            <li><span class="feature-dot"></span>pattern insights after just 2 days of logging</li>
+            <li><span class="feature-dot"></span>crisis resources always available, never alarming</li>
+        </ul>
+    </section>
+
+    <!-- ── Privacy ───────────────────────────────────────────── -->
+    <div class="privacy-banner reveal">
+        <p class="section-label">privacy</p>
+        <h2 class="section-title">everything stays on your device.</h2>
+        <p class="section-body">
+            no accounts. no cloud. no tracking. no one else can see your data. ever.
+            <br><br>
+            tomo was built for people who know what it's like to have hard days. your thoughts are yours alone.
+        </p>
+    </div>
+
+    <!-- ── Final CTA ─────────────────────────────────────────── -->
+    <section class="reveal" style="text-align: center;">
+        <h2 class="section-title">this is your space.<br>no one else's.</h2>
+        <p class="section-body" style="margin-bottom: 2.5rem;">
+            tomo is free. no ads. no subscriptions. just a warm companion, waiting whenever you're ready.
+        </p>
+        <a href="https://play.google.com/store/apps/details?id=com.bonasystems.tomo" class="cta-button">
+            get tomo on google play
+        </a>
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────────── -->
+    <footer>
+        <img src="icon.png" alt="tomo" class="footer-icon">
+        <p>tomo -- gentle wellness</p>
+        <p>&copy; 2026 bona systems</p>
+        <div class="footer-links">
+            <a href="privacy.html">privacy policy</a>
+            <a href="terms.html">terms of service</a>
+        </div>
+    </footer>
+
+    <!-- ── Scroll reveal ─────────────────────────────────────── -->
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        reveals.forEach(el => observer.observe(el));
+
+        // Navbar scroll shadow
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 10);
+        });
+    </script>
+
+</body>
+</html>
